@@ -54,7 +54,7 @@ jobs:
       - name: Aprobación manual
         uses: trstringer/manual-approval@v1
         with:
-          secret: ${{ secrets.TOKEN }}
+          secret: ${{ secrets.TOKEN_SERVICE }}
           approvers: blazquez-isma-uah
 
       - name: Download artifact from build job
