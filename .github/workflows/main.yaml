@@ -45,11 +45,18 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: test
+    if: github.ref=='refs/heads/main' 
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
       
     steps:
+      - name: Aprobación manual
+        uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ secrets.TOKEN }}
+          approvers: blazquez-isma-uah
+
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
